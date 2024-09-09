@@ -1,0 +1,30 @@
+Boston, MA--NH Urban Area; 2023-05-01; 2023-10-31
+Worcester, MA--CT Urban Area; 2023-05-01; 2023-10-31
+New York--Jersey City--Newark, NY--NJ Urban Area; 2023-05-01; 2023-10-31
+Philadelphia, PA--NJ--DE--MD Urban Area
+Chicago, IL--IN Urban Area; 2023-05-01; 2023-10-31
+Detroit, MI Urban Area; 2023-05-01; 2023-10-31
+Minneapolis--St. Paul, MN Urban Area; 2023-05-01; 2023-10-31
+St. Louis, MO--IL Urban Area; 2023-05-01; 2023-10-31
+Washington--Arlington, DC--VA--MD Urban Area; 2023-05-01; 2023-10-31
+Atlanta, GA Urban Area; 2023-05-01; 2023-10-31
+Miami--Fort Lauderdale, FL Urban Area; 2023-05-01; 2023-10-31
+Nashville-Davidson, TN Urban Area; 2023-05-01; 2023-10-31
+Memphis, TN--MS--AR Urban Area; 2023-05-01; 2023-10-31
+Louisville--Jefferson County, KY--IN Urban Area; 2023-05-01; 2023-10-31
+Dallas--Fort Worth--Arlington, TX Urban Area; 2023-05-01; 2023-10-31
+Houston, TX Urban Area; 2023-05-01; 2023-10-31
+Phoenix--Mesa--Scottsdale, AZ Urban Area; 2023-05-01; 2023-10-31
+Denver--Aurora, CO Urban Area; 2023-05-01; 2023-10-31
+Las Vegas--Henderson--Paradise, NV Urban Area; 2023-05-01; 2023-10-31
+Los Angeles--Long Beach--Anaheim, CA Urban Area; 2023-05-01; 2023-10-31
+San Francisco--Oakland, CA Urban Area; 2023-05-01; 2023-10-31
+Riverside--San Bernardino, CA Urban Area; 2023-05-01; 2023-10-31
+Seattle--Tacoma, WA Urban Area; 2023-05-01; 2023-10-31
+Portland, OR--WA Urban Area; 2023-05-01; 2023-10-31
+Tampa--St. Petersburg, FL Urban Area; 2023-05-01; 2023-10-31
+San Diego, CA Urban Area; 2023-05-01; 2023-10-31
+Baltimore, MD Urban Area; 2023-05-01; 2023-10-31
+Orlando, FL Urban Area; 2023-05-01; 2023-10-31
+Charlotte, NC--SC Urban Area; 2023-05-01; 2023-10-31
+San Antonio, TX Urban Area; 2023-05-01; 2023-10-31
