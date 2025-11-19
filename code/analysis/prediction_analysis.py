@@ -1,34 +1,39 @@
 import argparse
 
-import numpy as np
 from datetime import datetime
-from typing import Tuple, Dict
 from pathlib import Path
 
 from pm25_forecast_assessment.experiment import Experiment
 from pm25_forecast_assessment.metrics import (
-    Metric,
-    RMSE,
-    MeanExcessExposure,
     IsSmokeDay,
+    MeanExcessExposure,
+    RMSE,
 )
-from pm25_forecast_assessment.plotters import plot_time_series, confusion_matrix
+from pm25_forecast_assessment.plotters import plot_time_series
 
 
 def parse_arguments() -> argparse.Namespace:
-    """
-    Add command line arguments. Currently, this is a location, year and list of months
-    over which to do the analysis.
-    Returns the namespace argument for use in other functions.
+    """Parse command line arguments for prediction analysis.
+    
+    Currently accepts location file path and optional figure output name.
+    The location file should contain semicolon-separated values with location names,
+    start dates, and end dates for analysis.
+    
+    Returns:
+        argparse.Namespace: Parsed command line arguments containing location_file
+            and figure_name.
     """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--location_file",
         type=str,
-        help="Name of file. File should be a csv with columns location, start date, end data.\
-        Location: Must match a location in the UA Census Gazetteer. \
-        Start date for analysis in format YYYY-MM-DD \
-        End date for analysis in format YYYY-MM-DD.",
+        help=(
+            "Name of file. File should contain semicolon-separated values with columns: "
+            "location, start date, end date. "
+            "Location: Must match a location in the UA Census Gazetteer. "
+            "Start date for analysis in format YYYY-MM-DD. "
+            "End date for analysis in format YYYY-MM-DD."
+        ),
     )
     # add an argument to name the figure output
     parser.add_argument(
@@ -37,12 +42,31 @@ def parse_arguments() -> argparse.Namespace:
         help="Name of figure output. Must be a string.",
         default="tmp.pdf",
     )
+    
+    # forecast types
+    parser.add_argument(
+        "--forecasts",
+        type=str,
+        nargs='+',
+        help="Names of forecasts. Must be strings.",
+        default="airnow",
+    )
     return parser.parse_args()
 
 
-def load_file(file_name: str) -> Tuple[str, str, str]:
-    """
-    Load the file with the location, start date and end date.
+def load_file(file_name: str) -> tuple[list[str], list[datetime], list[datetime]]:
+    """Load location and date information from a semicolon-separated file.
+    
+    Args:
+        file_name: Path to the file containing location and date information.
+            Each line should be formatted as: location;start_date;end_date
+            where dates are in YYYY-MM-DD format.
+    
+    Returns:
+        tuple: A tuple containing three lists:
+            - locations (list[str]): Location names matching UA Census Gazetteer.
+            - start_dates (list[datetime]): Start dates for each location's analysis.
+            - end_dates (list[datetime]): End dates for each location's analysis.
     """
     locations = []
     start_dates = []
@@ -72,7 +96,7 @@ if __name__ == "__main__":
     figures_directory = Path(Path(__file__).parents[1], "figures")
     results_directory = Path(Path(__file__).parents[1], "results")
     data_directory = Path(Path(__file__).parents[1], "data")
-    forecasts = ["hrrr", "airnow", "geoscf", "cams", "naqfc"]
+    forecasts = list(set(args.forecasts) | {'airnow'}) # automatically include the airnow baseline
     for location, start_date, end_date in zip(locations, start_dates, end_dates):
         experiment = Experiment(
             location=location,
@@ -85,5 +109,4 @@ if __name__ == "__main__":
             forecasts=forecasts,
         )
         results = experiment.run()
-        # print(confusion_matrix(results))
-        plot_time_series(experiment, figure_name=args.figure_name)
+        plot_time_series([experiment], figure_name=args.figure_name)
